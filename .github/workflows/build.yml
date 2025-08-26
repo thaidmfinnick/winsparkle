@@ -60,7 +60,7 @@ jobs:
           name: winsparkle-binaries-ARM64
 
       - name: Build NuGet package
-        run: nuget pack nuget/WinSparkle.nuspec -Symbols -SymbolPackageFormat snupkg -Verbosity detailed
+        run: nuget pack nuget/WinSparkle.nuspec -Symbols -Verbosity detailed
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
