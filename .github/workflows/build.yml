@@ -60,13 +60,13 @@ jobs:
           name: winsparkle-binaries-ARM64
 
       - name: Build NuGet package
-        run: nuget pack nuget/WinSparkle.nuspec -Verbosity detailed
+        run: nuget pack nuget/WinSparkle.nuspec -Symbols -SymbolPackageFormat snupkg -Verbosity detailed
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: nuget-package
-          path: "*.nupkg"
+          path: "*.*nupkg"
 
   publish-nuget:
     name: Publish NuGet
@@ -82,10 +82,10 @@ jobs:
       - uses: nuget/setup-nuget@v1
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-          nuget-api-key-source: https://www.nuget.org/api/v2/package
+          nuget-api-key-source: https://api.nuget.org/v3/index.json
 
       - name: Publish to NuGet
-        run: nuget push *.nupkg -Source https://www.nuget.org/api/v2/package
+        run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -Verbosity detailed
 
   publish-release:
     name: Publish release
