@@ -1,3 +1,9 @@
+Version 0.9.2
+-------------
+
+- Fix incorrect layout with Chinese and Japanese (#261).
+- New and updated translations.
+
 
 Version 0.9.1
 -------------
