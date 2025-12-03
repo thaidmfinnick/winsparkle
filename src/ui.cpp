@@ -1288,7 +1288,7 @@ void App::OnTerminate(wxThreadEvent&)
 
 void App::OnShowCheckingUpdates(wxThreadEvent&)
 {
-    std::cout << "sparkle Showing checking updates window." << std::endl;
+    std::cout << "sparkle showing checking updates window." << std::endl;
     InitWindow();
     m_win->StateCheckingUpdates();
     ShowWindow();
@@ -1497,11 +1497,11 @@ void UI::NotifyNoUpdates(bool installAutomatically)
 
 
 /*static*/
-void UI::NotifyUpdateAvailable(const Appcast& info, bool installAutomatically)/
+void UI::NotifyUpdateAvailable(const Appcast& info, bool installAutomatically)
 {
     std::cout << "Version: " << info.Version << std::endl;
-    std::cout << "ShortVersionString: " << info.ShortVersionString << std::
-    ApplicationController::NotifyUpdateFound();
+    std::cout << "ShortVersionString: " << info.ShortVersionString << std::endl;
+    ApplicationController::NotifyUpdateFound(info.Version, info.ShortVersionString);
 
     UIThreadAccess uit;
     EventPayload payload;

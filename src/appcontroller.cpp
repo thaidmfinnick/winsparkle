@@ -84,13 +84,13 @@ void ApplicationController::NotifyUpdateError()
     }
 }
 
-void ApplicationController::NotifyUpdateFound()
+void ApplicationController::NotifyUpdateFound(const std::string& version, const std::string& buildNumber)
 {
     {
         CriticalSectionLocker lock(ms_csVars);
         if (ms_cbDidFindUpdate)
         {
-            (*ms_cbDidFindUpdate)();
+            (*ms_cbDidFindUpdate)(version.c_str(), buildNumber.c_str());
             return;
         }
     }

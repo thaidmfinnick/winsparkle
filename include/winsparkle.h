@@ -456,7 +456,7 @@ typedef void (__cdecl *win_sparkle_shutdown_request_callback_t)();
 WIN_SPARKLE_API void __cdecl win_sparkle_set_shutdown_request_callback(win_sparkle_shutdown_request_callback_t);
 
 /// Callback type for win_sparkle_did_find_update_callback()
-typedef void(__cdecl *win_sparkle_did_find_update_callback_t)();
+typedef void(__cdecl *win_sparkle_did_find_update_callback_t)(const char* version, const char* build_number);
 
 /**
     Set callback to be called when the updater did find an update.

@@ -61,7 +61,7 @@ public:
     static void NotifyUpdateError();
 
     /// Notify that an update has been found.
-    static void NotifyUpdateFound();
+    static void NotifyUpdateFound(const std::string& version, const std::string& build_number);
 
     /// Notify that an update has not been found.
     static void NotifyUpdateNotFound();
