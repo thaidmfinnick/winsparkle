@@ -84,13 +84,13 @@ void ApplicationController::NotifyUpdateError()
     }
 }
 
-void ApplicationController::NotifyUpdateFound(const std::string& version, const std::string& buildNumber)
+void ApplicationController::NotifyUpdateFound(const std::string& fullVersion)
 {
     {
         CriticalSectionLocker lock(ms_csVars);
         if (ms_cbDidFindUpdate)
         {
-            (*ms_cbDidFindUpdate)(version.c_str(), buildNumber.c_str());
+            (*ms_cbDidFindUpdate)(fullVersion.c_str());
             return;
         }
     }
@@ -165,12 +165,12 @@ int ApplicationController::UserRunInstallerCallback(const wchar_t* filePath)
     return ms_cbUserRunInstaller(filePath);
 }
 
-void ApplicationController::NotifyUpdateDownloaded()
+void ApplicationController::NotifyUpdateDownloaded(const std::string& fullVersion)
 {
     CriticalSectionLocker lock(ms_csVars);
     if (ms_cbUpdateDownloaded)
     {
-        (*ms_cbUpdateDownloaded)();
+        (*ms_cbUpdateDownloaded)(fullVersion.c_str());
         return;
     }
 }

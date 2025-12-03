@@ -992,7 +992,8 @@ void UpdateDialog::StateUpdateDownloaded(const std::wstring& updateFile, const s
     m_updateFile = updateFile;
     m_installerArguments = installerArguments;
 
-    ApplicationController::NotifyUpdateDownloaded();
+    std::string fullVersion = m_appcast.ShortVersionString + "-" + m_appcast.Version;
+    ApplicationController::NotifyUpdateDownloaded(fullVersion);
 }
 
 
@@ -1499,9 +1500,8 @@ void UI::NotifyNoUpdates(bool installAutomatically)
 /*static*/
 void UI::NotifyUpdateAvailable(const Appcast& info, bool installAutomatically)
 {
-    std::cout << "Version: " << info.Version << std::endl;
-    std::cout << "ShortVersionString: " << info.ShortVersionString << std::endl;
-    ApplicationController::NotifyUpdateFound(info.Version, info.ShortVersionString);
+    std::string fullVersion = info.ShortVersionString + "-" + info.Version;
+    ApplicationController::NotifyUpdateFound(fullVersion);
 
     UIThreadAccess uit;
     EventPayload payload;

@@ -61,7 +61,7 @@ public:
     static void NotifyUpdateError();
 
     /// Notify that an update has been found.
-    static void NotifyUpdateFound(const std::string& version, const std::string& build_number);
+    static void NotifyUpdateFound(const std::string& fullVersion);
 
     /// Notify that an update has not been found.
     static void NotifyUpdateNotFound();
@@ -81,7 +81,7 @@ public:
     /// Run the user installer callback if one is set.
     static int UserRunInstallerCallback(const wchar_t*);
 
-    static void NotifyUpdateDownloaded();
+    static void NotifyUpdateDownloaded(const std::string& fullVersion);
 
     static void InstallUpdateSilently();
 
