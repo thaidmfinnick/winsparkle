@@ -654,6 +654,12 @@ WIN_SPARKLE_API void __cdecl win_sparkle_check_update_with_ui_and_install();
  */
 WIN_SPARKLE_API void __cdecl win_sparkle_check_update_without_ui();
 
+WIN_SPARKLE_API void __cdecl win_sparkle_install_update_silently();
+
+
+typedef void(__cdecl* win_sparkle_update_downloaded_callback_t)();
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_downloaded_callback(win_sparkle_update_downloaded_callback_t callback);
+
 //@}
 
 #ifdef __cplusplus

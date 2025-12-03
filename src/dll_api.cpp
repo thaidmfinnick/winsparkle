@@ -429,5 +429,18 @@ WIN_SPARKLE_API void __cdecl win_sparkle_set_user_run_installer_callback(win_spa
     ApplicationController::SetUserRunInstallerCallback(callback);
 }
 
+WIN_SPARKLE_API void __cdecl win_sparkle_install_update_silently()
+{
+    try
+    {
+        UI::OnInstallUpdateSilently();
+    }
+    CATCH_ALL_EXCEPTIONS
+}
+
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_downloaded_callback(win_sparkle_update_downloaded_callback_t callback)
+{
+    ApplicationController::SetUpdateDownloadedCallback(callback);
+}
 
 } // extern "C"

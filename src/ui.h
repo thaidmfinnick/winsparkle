@@ -104,6 +104,8 @@ public:
      */
     static void AskForPermission();
 
+    static void OnInstallUpdateSilently();
+
     /**
         Sets HINSTANCE of the DLL.
 

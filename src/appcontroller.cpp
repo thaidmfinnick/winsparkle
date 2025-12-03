@@ -41,6 +41,7 @@ win_sparkle_update_skipped_callback_t      ApplicationController::ms_cbUpdateSki
 win_sparkle_update_postponed_callback_t    ApplicationController::ms_cbUpdatePostponed = NULL;
 win_sparkle_update_dismissed_callback_t    ApplicationController::ms_cbUpdateDismissed = NULL;
 win_sparkle_user_run_installer_callback_t  ApplicationController::ms_cbUserRunInstaller = NULL;
+win_sparkle_update_downloaded_callback_t   ApplicationController::ms_cbUpdateDownloaded = NULL;
 
 bool ApplicationController::IsReadyToShutdown()
 {
@@ -162,6 +163,16 @@ int ApplicationController::UserRunInstallerCallback(const wchar_t* filePath)
         return false;
 
     return ms_cbUserRunInstaller(filePath);
+}
+
+void ApplicationController::NotifyUpdateDownloaded()
+{
+    CriticalSectionLocker lock(ms_csVars);
+    if (ms_cbUpdateDownloaded)
+    {
+        (*ms_cbUpdateDownloaded)();
+        return;
+    }
 }
 
 } // namespace winsparkle
