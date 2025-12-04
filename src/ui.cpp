@@ -671,6 +671,9 @@ void UpdateDialog::OnInstall(wxCommandEvent&)
 
 void UpdateDialog::OnRunInstaller(wxCommandEvent&)
 {
+
+    if (m_updateFile.IsEmpty()) { return; }
+
     if( !ApplicationController::IsReadyToShutdown() )
     {
         wxMessageDialog dlg(this,
@@ -1498,6 +1501,7 @@ void UI::NotifyNoUpdates(bool installAutomatically)
 /*static*/
 void UI::NotifyUpdateAvailable(const Appcast& info, bool installAutomatically)
 {
+    //version>-<build_number>, e.g: 6.20.0-12345
     std::string fullVersion = info.ShortVersionString + "-" + info.Version;
     ApplicationController::NotifyUpdateFound(fullVersion);
 
