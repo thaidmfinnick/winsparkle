@@ -953,7 +953,6 @@ void UpdateDialog::StateDownloading()
 
 void UpdateDialog::DownloadProgress(size_t downloaded, size_t total)
 {
-    std::cout << "Downloaded " << downloaded << " of " << total << " bytes." << std::endl;  
     wxString label;
 
     if ( total )
@@ -1289,7 +1288,6 @@ void App::OnTerminate(wxThreadEvent&)
 
 void App::OnShowCheckingUpdates(wxThreadEvent&)
 {
-    std::cout << "sparkle showing checking updates window." << std::endl;
     InitWindow();
     m_win->StateCheckingUpdates();
     ShowWindow();
@@ -1536,7 +1534,6 @@ void UI::NotifyUpdateDownloaded(const std::wstring& updateFile, const Appcast &a
 /*static*/
 void UI::NotifyUpdateError(ErrorCode err)
 {
-    std::cout << "error:" << err << std::endl;
     ApplicationController::NotifyUpdateError();
 
     UIThreadAccess uit;
