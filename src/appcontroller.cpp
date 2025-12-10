@@ -42,6 +42,7 @@ win_sparkle_update_postponed_callback_t    ApplicationController::ms_cbUpdatePos
 win_sparkle_update_dismissed_callback_t    ApplicationController::ms_cbUpdateDismissed = NULL;
 win_sparkle_user_run_installer_callback_t  ApplicationController::ms_cbUserRunInstaller = NULL;
 win_sparkle_update_downloaded_callback_t   ApplicationController::ms_cbUpdateDownloaded = NULL;
+win_sparkle_update_download_progress_callback_t ApplicationController::ms_cbUpdateDownloadProgress = NULL;
 
 bool ApplicationController::IsReadyToShutdown()
 {
@@ -175,4 +176,13 @@ void ApplicationController::NotifyUpdateDownloaded(const std::string& fullVersio
     }
 }
 
+void ApplicationController::NotifyUpdateDownloadProgress(double progress)
+{
+    CriticalSectionLocker lock(ms_csVars);
+    if (ms_cbUpdateDownloadProgress)
+    {
+        (*ms_cbUpdateDownloadProgress)(progress);
+        return;
+    }
+}
 } // namespace winsparkle

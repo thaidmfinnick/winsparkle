@@ -83,6 +83,8 @@ public:
 
     static void NotifyUpdateDownloaded(const std::string& fullVersion);
 
+    static void NotifyUpdateDownloadProgress(double progress);
+
     static void InstallUpdateSilently();
 
     //@}
@@ -167,6 +169,11 @@ public:
         ms_cbUpdateDownloaded = callback;
     }
 
+    static void SetUpdateDownloadProgressCallback(win_sparkle_update_download_progress_callback_t callback)
+    {
+        CriticalSectionLocker lock(ms_csVars);
+        ms_cbUpdateDownloadProgress = callback;
+    }
 
     //@}
 
@@ -187,6 +194,7 @@ private:
     static win_sparkle_update_dismissed_callback_t    ms_cbUpdateDismissed;
     static win_sparkle_user_run_installer_callback_t  ms_cbUserRunInstaller;
     static win_sparkle_update_downloaded_callback_t   ms_cbUpdateDownloaded;
+    static win_sparkle_update_download_progress_callback_t ms_cbUpdateDownloadProgress;
 };
 
 } // namespace winsparkle

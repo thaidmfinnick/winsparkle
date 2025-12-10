@@ -443,4 +443,9 @@ WIN_SPARKLE_API void __cdecl win_sparkle_set_update_downloaded_callback(win_spar
     ApplicationController::SetUpdateDownloadedCallback(callback);
 }
 
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_download_progress_callback(win_sparkle_update_download_progress_callback_t callback)
+{
+    ApplicationController::SetUpdateDownloadProgressCallback(callback);
+}
+
 } // extern "C"
