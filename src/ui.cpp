@@ -1516,6 +1516,13 @@ void UI::NotifyUpdateAvailable(const Appcast& info, bool installAutomatically)
 /*static*/
 void UI::NotifyDownloadProgress(size_t downloaded, size_t total)
 {
+    double progress = 0.0;
+
+    if (total > 0) {
+        progress = static_cast<double>(downloaded) / static_cast<double>(total);
+    }
+    ApplicationController::NotifyUpdateDownloadProgress(progress);
+
     UIThreadAccess uit;
     EventPayload payload;
     payload.sizeDownloaded = downloaded;

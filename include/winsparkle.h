@@ -660,6 +660,8 @@ WIN_SPARKLE_API void __cdecl win_sparkle_install_update_silently();
 typedef void(__cdecl* win_sparkle_update_downloaded_callback_t)(const char* full_version);
 WIN_SPARKLE_API void __cdecl win_sparkle_set_update_downloaded_callback(win_sparkle_update_downloaded_callback_t callback);
 
+typedef void(__cdecl* win_sparkle_update_download_progress_callback_t)(double progress);
+WIN_SPARKLE_API void __cdecl win_sparkle_set_update_download_progress_callback(win_sparkle_update_download_progress_callback_t callback);
 //@}
 
 #ifdef __cplusplus
